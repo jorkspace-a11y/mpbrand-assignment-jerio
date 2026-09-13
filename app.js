@@ -35,7 +35,7 @@ function posterNode(data) {
   const [title,,style,file,sub]=data;
   const node=el('div',`poster ${style}`);
   if(file){const img=el('img');img.src=`assets/${file}`;img.alt='';img.loading='lazy';node.append(img);node.style.setProperty('--poster-image',`url('assets/${file}')`);}
-  node.append(el('span','poster-brand','META\nPACIFIC'),el('span','poster-title',title),el('span','poster-sub',sub));
+  node.append(el('span','poster-brand','META\nPACIFIC'),el('span','poster-title',title),el('span','poster-sub',sub),el('span','poster-credit','Jerio'));
   node.querySelectorAll('.poster-title,.poster-brand').forEach(n=>n.style.whiteSpace='pre-line');
   return node;
 }
@@ -58,7 +58,7 @@ $('#poster-track').addEventListener('keydown',e=>{if(e.target!==e.currentTarget)
 document.querySelectorAll('[data-route]').forEach(button=>button.addEventListener('click',()=>{
   const route=button.dataset.route;document.querySelectorAll('[data-route]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
   $('#route-logo').src=`logos/${route}-paper.svg`;$('#route-logo').alt=`Meta Pacific ${route} wordmark`;$('.usage-mark').src=$('#route-logo').src;$('#logo-download').href=$('#route-logo').src;
-  $('#route-description').textContent={editorial:'EDITORIAL: bold and light letterforms make the complete name clear. The dot connects both parts while leaving the photography room to lead.',signal:'SIGNAL: upright bold lettering, grounded by a straight underline. Keeps the presence without an italic slant. The line carries into film titles and transitions.',studio:'STUDIO: compact MP initials with a divider and a lighter full name. A clear signature for corner placements, production credits and small applications.'}[route];
+  $('#route-description').textContent={editorial:'EDITORIAL: bold and light letterforms make the complete name clear. The dot connects both parts while leaving the photography room to lead.',signal:'SIGNAL: rounded upright lettering with a contained meta and a red stop. Inspired by the area.lab, boncei and invent. references. A compact signature that stays clear over footage.',studio:'STUDIO: compact MP initials with a divider and a lighter full name. A clear signature for corner placements, production credits and small applications.'}[route];
 }));
 
 function showMedia(project,key){
@@ -88,4 +88,3 @@ function setMotion(paused){document.body.classList.toggle('motion-paused',paused
 setMotion(reduced.matches);reduced.addEventListener('change',event=>setMotion(event.matches));$('#motion').addEventListener('click',()=>setMotion(!document.body.classList.contains('motion-paused')));
 $('.hero').addEventListener('pointermove',event=>{if(reduced.matches||document.body.classList.contains('motion-paused')||event.pointerType==='touch')return;const r=event.currentTarget.getBoundingClientRect();$('.hero-image').style.translate=`${(event.clientX/r.width-.5)*16}px ${(event.clientY-r.top)/r.height*12-6}px`;});
 $('.hero').addEventListener('pointerleave',()=>{$('.hero-image').style.translate='';});
-

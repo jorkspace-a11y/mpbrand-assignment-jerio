@@ -1,4 +1,5 @@
 @page{size:A4 landscape;margin:10mm}
+@page{@bottom-right{content:'Jerio';font:10px Arial;color:#777}}
 .hero::before{content:'MPBrand Direction - Jerio';position:absolute;left:var(--gutter);top:8px;font:10px Body;z-index:3}
 .instagram-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:25px}.instagram-grid>article{break-before:page;break-inside:avoid}.instagram-grid{display:block}.instagram-grid>article{display:grid;grid-template-columns:300px 1fr;gap:12px 36px;margin:30px 0}.instagram-cover{grid-column:1;grid-row:1/7;margin:0}.instagram-grid h3{font-size:42px}.instagram-grid .chapter-label,.instagram-grid .instagram-source{margin:0}.instagram-grid dl{grid-column:2;font-size:13px}.instagram-grid dt{margin-top:12px}.instagram-grid .text-link{grid-column:2;justify-self:start;margin-top:8px}
 *{animation:none!important;transition:none!important;box-shadow:none!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}

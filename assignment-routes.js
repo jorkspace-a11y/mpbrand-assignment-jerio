@@ -1,6 +1,6 @@
 const routeData = [
   {id:'editorial', title:'01 / Editorial', idea:'Bold meets light. One connected name.', reference:'area.lab / bene.studio', why:'The contrast makes both parts of the name readable without adding a separate symbol. It feels like a studio signature and leaves room for expressive photography and large headlines.', use:'Choose this for a flexible main identity across the website, proposals and social content.', motion:'Keep the logo still. Let the image move behind it.'},
-  {id:'signal', title:'02 / Signal', idea:'Upright. Bold. Underlined.', reference:'stories / reform / line-led studio wordmarks', why:'The upright weight keeps the presence of Signal without the italic slant. A straight rule gives it a clear baseline and a graphic device that can carry into titles and transitions.', use:'Choose this for a stronger campaign signature, particularly on film titles and high-contrast social posts.', motion:'Draw the rule across once, then hold the wordmark.'},
+  {id:'signal', title:'02 / Signal', idea:'Rounded. Upright. Contained.', reference:'area.lab / boncei / invent.', why:'A contained meta and rounded upright lettering replace the heavy underline. The contrast creates a readable signature over footage; the small red stop adds a point of focus without an italic slant.', use:'Choose this for a stronger campaign signature, particularly on film titles and high-contrast social posts.', motion:'Reveal the contained word once, then hold the complete name.'},
   {id:'studio', title:'03 / Studio', idea:'A compact MP mark with a quiet name lockup.', reference:'THE LAB / bene.studio', why:'This replaces the wide stacked block. The initials give the identity a compact anchor; the divider and lighter full name keep the complete lockup clear without stretching the letters.', use:'Choose this when small signatures, corner placements and production credits matter most.', motion:'Reveal the initials, then the divider and full name.'}
 ];
 const formats = [
@@ -23,7 +23,7 @@ function art(route, format) {
   const box=make('div',`art ${type} ${id}${portrait?' portrait':''}`);box.dataset.export=`${route.id}-${id}`;box.setAttribute('aria-label',`${route.title} ${label}`);
   const image=make('img','photo');image.src='assets/'+photo;image.alt='Meta Pacific project photography';
   const logo=make('img','logo');logo.src=`logos/${route.id}-${portrait?'paper':'ink'}.svg`;logo.alt=`Meta Pacific ${route.id} logo`;
-  box.append(image,logo,make('span','headline',title),make('span','copy',copy));
+  box.append(image,logo,make('span','headline',title),make('span','copy',copy),make('span','design-credit','Jerio'));
   if(type==='carousel')box.append(make('span','counter',id.slice(-1)+' / 3'));
   if(type==='reel')box.append(make('span','caption',['THE PLACE. THE ROUTE. THE DETAILS.','FROM THE SETTING TO THE SPACE.','LIGHT. TEXTURE. PERSPECTIVE.'][Number(id.slice(-1))-1]));
   if(type==='story'){
