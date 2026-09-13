@@ -1,7 +1,12 @@
 @page{size:A4 landscape;margin:12mm 12mm 16mm}
-@page{@bottom-right{content:'Jerio';font:10px Arial;color:#777}}
+@page{@bottom-right{content:none}}
 body[data-task=anjuna] .timeline img{height:165px}body[data-task=anjuna] .reason{margin:14px 0;padding:14px}body[data-task=anjuna] .reason h3{margin-bottom:8px}
-body[data-task=landing] a.primary{display:none}
+body[data-task=landing] a.primary{display:inline-block}
+body[data-task=landing] .landing-direction{break-before:page;break-inside:avoid;grid-template-columns:1.6fr 1fr;gap:30px;margin-bottom:0}
+body[data-task=landing] .landing-direction:first-child{break-before:auto}
+body[data-task=landing] .landing-direction img{height:410px;aspect-ratio:auto;object-fit:contain;object-position:top left}
+body[data-task=landing] .landing-direction h3{font-size:26px}
+body[data-task=landing] .landing-direction p{font-size:16px}
 body[data-task=landing] .script-steps{gap:4px}body[data-task=landing] .script-steps>div{padding:6px 0}body[data-task=landing] .script-steps h3{font-size:20px;margin-bottom:4px}body[data-task=landing] .script-steps p{font-size:12px}body[data-task=landing] .reason{padding:12px;margin:12px 0}body[data-task=landing] .reason h3{margin-bottom:6px}
 body .commercial-links{grid-template-columns:repeat(3,1fr);gap:15px}body .commercial-links a{padding:10px;gap:8px}body .commercial-links .quote-thumbnail{height:190px;max-width:100%;width:100%;object-position:center}body .commercial-links strong{font-size:16px}body .commercial-links span{font-size:10px}
 body .jerio-mark{display:none}body .reason{break-inside:avoid}body .logo-comparison{gap:10px}body .logo-choice{padding:10px 0;gap:25px}body .logo-choice img{height:100px}body .logo-choice h3{font-size:22px;margin-bottom:8px}body .logo-choice p{font-size:12px;margin-bottom:8px}body .logo-choice .source-note{font-size:10px;margin-top:8px!important}body .art-row .social-art.portrait{height:410px}body .founder-hero .social-art{height:355px;aspect-ratio:4/5;width:284px}body[data-task=founder] .reason{margin:14px 0;padding:14px}body[data-task=founder] .reason h3{margin-bottom:8px}body[data-task=applications] .platforms{gap:15px}body[data-task=applications] .platforms article{padding:16px}body[data-task=applications] .platforms h3{margin-bottom:10px}body[data-task=applications] .platforms p{font-size:13px;margin-bottom:10px}body[data-task=applications] .art-row .social-art.wide{height:165px}body .social-art.wide .headline{font-size:7cqw}body .social-art.wide .small-copy{font-size:2cqw}body .print-grid-overview{display:block}body .print-grid-overview .social-grid{width:285px;gap:5px;margin:10px auto}body .print-grid-overview .social-art{height:108px}body .print-grid-overview figcaption{display:none}body .print-grid-overview .social-art .small-copy{font-size:3.5cqw}

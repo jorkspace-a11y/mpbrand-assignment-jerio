@@ -35,7 +35,7 @@ function posterNode(data) {
   const [title,,style,file,sub]=data;
   const node=el('div',`poster ${style}`);
   if(file){const img=el('img');img.src=`assets/${file}`;img.alt='';img.loading='lazy';node.append(img);node.style.setProperty('--poster-image',`url('assets/${file}')`);}
-  node.append(el('span','poster-brand','META\nPACIFIC'),el('span','poster-title',title),el('span','poster-sub',sub),el('span','poster-credit','Jerio'));
+  node.append(el('span','poster-brand','META\nPACIFIC'),el('span','poster-title',title),el('span','poster-sub',sub));
   node.querySelectorAll('.poster-title,.poster-brand').forEach(n=>n.style.whiteSpace='pre-line');
   return node;
 }

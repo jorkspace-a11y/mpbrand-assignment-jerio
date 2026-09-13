@@ -10,7 +10,7 @@ count=0
 for path in sorted(root.glob('*.pdf')):
     reader=PdfReader(path)
     texts=[page.extract_text() or '' for page in reader.pages]
-    assert all('Jerio' in text for text in texts), (path.name,'missing credit')
+    assert all('Jerio' not in text for text in texts), (path.name,'visible watermark')
     if path.name.startswith(('quotation-','invoice-')):
         assert len(reader.pages)==1,(path.name,'expected one page')
         values=['15,000,000','8,000,000'] if '-scope-' in path.name else ['8,000,000','10,000,000']
@@ -27,4 +27,4 @@ for path in sorted(root.glob('*.pdf')):
     temp=path.with_suffix('.pdf.tmp')
     writer.write(temp);temp.replace(path)
     count+=len(reader.pages)
-print(f'{len(list(root.glob("*.pdf")))} PDFs / {count} pages: credits, source prices, page counts and public links checked')
+print(f'{len(list(root.glob("*.pdf")))} PDFs / {count} pages: no visible watermarks, source prices, page counts and public links checked')

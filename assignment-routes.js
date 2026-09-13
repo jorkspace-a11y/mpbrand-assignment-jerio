@@ -1,7 +1,7 @@
 const routeData = [
-  {id:'editorial', title:'01 / Editorial', idea:'Bold meets light. One connected name.', reference:'area.lab / bene.studio', why:'The contrast makes both parts of the name readable without adding a separate symbol. It feels like a studio signature and leaves room for expressive photography and large headlines.', use:'Choose this for a flexible main identity across the website, proposals and social content.', motion:'Keep the logo still. Let the image move behind it.'},
-  {id:'signal', title:'02 / Signal', idea:'Rounded. Upright. Contained.', reference:'area.lab / boncei / invent.', why:'A contained meta and rounded upright lettering replace the heavy underline. The contrast creates a readable signature over footage; the small red stop adds a point of focus without an italic slant.', use:'Choose this for a stronger campaign signature, particularly on film titles and high-contrast social posts.', motion:'Reveal the contained word once, then hold the complete name.'},
-  {id:'studio', title:'03 / Studio', idea:'A compact MP mark with a quiet name lockup.', reference:'THE LAB / bene.studio', why:'This replaces the wide stacked block. The initials give the identity a compact anchor; the divider and lighter full name keep the complete lockup clear without stretching the letters.', use:'Choose this when small signatures, corner placements and production credits matter most.', motion:'Reveal the initials, then the divider and full name.'}
+  {id:'editorial', title:'01 / Editorial', idea:'Bold meets light. One connected name.', why:'The contrast makes both parts of the name readable without adding a separate symbol. It feels like a studio signature and leaves room for expressive photography and large headlines.', use:'Choose this for a flexible main identity across the website, proposals and social content.', motion:'Keep the logo still. Let the image move behind it.'},
+  {id:'signal', title:'02 / Signal', idea:'Rounded. Upright. Contained.', why:'A contained meta and rounded upright lettering replace the heavy underline. The contrast creates a readable signature over footage; the small red stop adds a point of focus without an italic slant.', use:'Choose this for a stronger campaign signature, particularly on film titles and high-contrast social posts.', motion:'Reveal the contained word once, then hold the complete name.'},
+  {id:'studio', title:'03 / Studio', idea:'A compact MP mark with a quiet name lockup.', why:'This replaces the wide stacked block. The initials give the identity a compact anchor; the divider and lighter full name keep the complete lockup clear without stretching the letters.', use:'Choose this when small signatures, corner placements and production credits matter most.', motion:'Reveal the initials, then the divider and full name.'}
 ];
 const formats = [
   ['feed-1','Feed 01','See the whole\npicture.','photos/aerial-bay-lagoon.jpg','Film, photography and virtual experiences.'],
@@ -23,7 +23,7 @@ function art(route, format) {
   const box=make('div',`art ${type} ${id}${portrait?' portrait':''}`);box.dataset.export=`${route.id}-${id}`;box.setAttribute('aria-label',`${route.title} ${label}`);
   const image=make('img','photo');image.src='assets/'+photo;image.alt='Meta Pacific project photography';
   const logo=make('img','logo');logo.src=`logos/${route.id}-${portrait?'paper':'ink'}.svg`;logo.alt=`Meta Pacific ${route.id} logo`;
-  box.append(image,logo,make('span','headline',title),make('span','copy',copy),make('span','design-credit','Jerio'));
+  box.append(image,logo,make('span','headline',title),make('span','copy',copy));
   if(type==='carousel')box.append(make('span','counter',id.slice(-1)+' / 3'));
   if(type==='reel')box.append(make('span','caption',['THE PLACE. THE ROUTE. THE DETAILS.','FROM THE SETTING TO THE SPACE.','LIGHT. TEXTURE. PERSPECTIVE.'][Number(id.slice(-1))-1]));
   if(type==='story'){
@@ -35,7 +35,7 @@ function art(route, format) {
 for(const route of routeData){
   const section=make('section','route '+route.id);section.id=route.id;
   const overview=make('div','route-overview');const head=make('div','route-title');const left=make('div');left.append(make('h2','',route.title),make('p','',route.idea));
-  const right=make('div');right.append(make('p','',route.use),make('small','',route.reference));head.append(left,right);
+  const right=make('div');right.append(make('p','',route.use));head.append(left,right);
   const board=make('div','logo-board');board.dataset.logo=route.id;const logo=make('img');logo.src=`logos/${route.id}-ink.svg`;logo.alt=`Meta Pacific ${route.id} wordmark`;board.append(logo);
   const why=make('div','route-why');const reasoning=make('div');reasoning.append(make('h3','','Why this direction'),make('p','',route.why));const motion=make('div');motion.append(make('h3','','Motion principle'),make('p','',route.motion));why.append(reasoning,motion);
   const links=make('div','logo-downloads');for(const variant of ['ink','paper']){const a=make('a','',`Outlined SVG / ${variant}`);a.href=`logos/${route.id}-${variant}.svg`;a.download='';links.append(a);}
@@ -51,8 +51,3 @@ for(const route of routeData){
   }
   document.querySelector('#routes').append(section);
 }
-const motionButton=document.querySelector('#route-motion');
-const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
-function motionState(paused){document.body.classList.toggle('motion-paused',paused);motionButton.textContent=paused?'Enable motion':'Pause motion';motionButton.setAttribute('aria-pressed',String(paused));}
-motionButton.addEventListener('click',()=>motionState(!document.body.classList.contains('motion-paused')));
-motionPreference.addEventListener('change',e=>motionState(e.matches));motionState(motionPreference.matches);

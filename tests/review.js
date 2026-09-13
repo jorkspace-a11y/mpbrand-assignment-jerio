@@ -1,5 +1,6 @@
 async (page) => {
   const cdp=await page.context().newCDPSession(page);await cdp.send('Network.enable');await cdp.send('Network.setCacheDisabled',{cacheDisabled:true});
+  await page.emulateMedia({reducedMotion:'reduce'});
   const base='http://127.0.0.1:8768/mpbrand-assignment-jerio/';
   const output='C:/Users/hp/OneDrive/Documents/ChatGPT/Meta Pacific Projects/output/playwright/task-qa/';
   const root='C:/Users/hp/Projects/mpbrand-assignment-jerio/';
@@ -15,6 +16,8 @@ async (page) => {
     await page.evaluate(async()=>{document.querySelectorAll('img').forEach(x=>x.loading='eager');await document.fonts.ready;await Promise.all([...document.images].map(x=>x.decode().catch(()=>{})));});
     const missing=await page.evaluate(()=>[...document.images].filter(x=>!x.naturalWidth).map(x=>x.getAttribute('src')));
     if(missing.length)failures.push({id,missing});
+    if(/Jerio|area\.lab|boncei|invent\.|Warhol|Oddly|Adobe/.test(await page.locator('body').innerText()))failures.push({id,unwantedCredit:true});
+    if(await page.locator('.reason,.motion-toggle,.reference-shelf').count())failures.push({id,removedUI:true});
     await page.screenshot({path:output+id+'-desktop.png',fullPage:true});
     const pdf=String(i+1).padStart(2,'0')+'-'+id+'-Jerio.pdf';
     await page.pdf({path:root+'pdf/'+pdf,preferCSSPageSize:true,printBackground:true,displayHeaderFooter:false});
@@ -48,5 +51,30 @@ async (page) => {
       if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1))failures.push({path,width,overflow:true});
     }
   }
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  for(const logo of ['editorial','signal','studio']){
+    await page.goto(base+'homepage.html?logo='+logo);
+    if(!await page.evaluate(()=>document.getAnimations().length))failures.push({logo,automaticMotion:false});
+    await page.evaluate(async()=>{document.querySelectorAll('img[src]').forEach(i=>i.loading='eager');await document.fonts.ready;await Promise.all([...document.querySelectorAll('img[src]')].map(i=>i.decode()));});
+    for(const width of [320,390,768,1024,1440]){
+      await page.setViewportSize({width,height:1000});
+      const geometry=await page.evaluate(()=>{const image=document.querySelector('.hero-film').getBoundingClientRect();return {overflow:document.documentElement.scrollWidth>innerWidth+1,overlap:[...document.querySelectorAll('#landing-headline,.hero-bottom')].some(el=>el.getBoundingClientRect().bottom>image.top)};});
+      if(geometry.overflow||geometry.overlap)failures.push({logo,width,...geometry});
+    }
+    await page.locator('[data-project=sakti]').click();if(!await page.locator('dialog').evaluate(d=>d.open))failures.push('dialog open');
+    await page.keyboard.press('Escape');if(!await page.locator('[data-project=sakti]').evaluate(b=>b===document.activeElement))failures.push('dialog focus return');
+    await page.locator('.service-lines details').nth(1).locator('summary').click();if(!await page.locator('.service-lines details').nth(1).evaluate(d=>d.open))failures.push('service disclosure');
+    const next=logo==='studio'?'editorial':'studio';await page.locator('#identity-select').selectOption(next);
+    if(!page.url().includes('logo='+next)||await page.locator('body').getAttribute('data-identity')!==next)failures.push('identity selection');
+    if(!await page.locator('.brand-link img').getAttribute('src').then(s=>s.includes(next)))failures.push('identity logo');
+    await page.locator('#identity-select').selectOption(logo);await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(4600);
+    if(await page.evaluate(()=>document.getAnimations().some(a=>a.playState==='running')))failures.push('motion did not settle');
+    await page.screenshot({path:output+'landing-'+logo+'-full.png',fullPage:true});
+    await page.setViewportSize({width:390,height:844});await page.screenshot({path:output+'landing-'+logo+'-mobile.png',fullPage:true});
+  }
+  await page.emulateMedia({reducedMotion:'reduce'});await page.reload();
+  if(await page.evaluate(()=>document.getAnimations().length))failures.push('reduced motion');
+  await page.locator('.preview-bar a').click();if(!page.url().includes('task=landing'))failures.push('return to task');
+  await page.locator('.review-nav a[href="./#tasks"]').click();if(await page.locator('.task-link').count()!==13)failures.push('return to hub');
   return {results,failures,errors};
 }
