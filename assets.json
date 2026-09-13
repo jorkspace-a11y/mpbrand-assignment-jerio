@@ -1,0 +1,72 @@
+[
+  {
+    "name": "aerial bay lagoon",
+    "file": "assets/photos/aerial-bay-lagoon.jpg",
+    "group": "Photography"
+  },
+  {
+    "name": "aerial parkland coast",
+    "file": "assets/photos/aerial-parkland-coast.jpg",
+    "group": "Photography"
+  },
+  {
+    "name": "aerial site building",
+    "file": "assets/photos/aerial-site-building.jpg",
+    "group": "Photography"
+  },
+  {
+    "name": "aerial site overview",
+    "file": "assets/photos/aerial-site-overview.jpg",
+    "group": "Photography"
+  },
+  {
+    "name": "hero band",
+    "file": "assets/photos/hero-band.jpg",
+    "group": "Photography"
+  },
+  {
+    "name": "anjuna fpv",
+    "file": "assets/work/anjuna-fpv.jpg",
+    "group": "Project covers"
+  },
+  {
+    "name": "anjuna vt",
+    "file": "assets/work/anjuna-vt.jpg",
+    "group": "Project covers"
+  },
+  {
+    "name": "invest vt",
+    "file": "assets/work/invest-vt.jpg",
+    "group": "Project covers"
+  },
+  {
+    "name": "kclub vt",
+    "file": "assets/work/kclub-vt.jpg",
+    "group": "Project covers"
+  },
+  {
+    "name": "kohsamui fpv",
+    "file": "assets/work/kohsamui-fpv.jpg",
+    "group": "Project covers"
+  },
+  {
+    "name": "minimap fpv",
+    "file": "assets/work/minimap-fpv.jpg",
+    "group": "Project covers"
+  },
+  {
+    "name": "renders vt",
+    "file": "assets/work/renders-vt.jpg",
+    "group": "Project covers"
+  },
+  {
+    "name": "sakti fpv",
+    "file": "assets/work/sakti-fpv.jpg",
+    "group": "Project covers"
+  },
+  {
+    "name": "sardine fpv",
+    "file": "assets/work/sardine-fpv.jpg",
+    "group": "Project covers"
+  }
+]
