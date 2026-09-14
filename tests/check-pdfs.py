@@ -11,6 +11,7 @@ for path in sorted(root.glob('*.pdf')):
     reader=PdfReader(path)
     texts=[page.extract_text() or '' for page in reader.pages]
     assert all('Jerio' not in text for text in texts), (path.name,'visible watermark')
+    assert all('\u2733' not in text for text in texts), (path.name,'emoji star')
     if path.name.startswith(('quotation-','invoice-')):
         assert len(reader.pages)==1,(path.name,'expected one page')
         values=['15,000,000','8,000,000'] if '-scope-' in path.name else ['8,000,000','10,000,000']

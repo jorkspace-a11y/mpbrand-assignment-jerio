@@ -87,7 +87,7 @@ async (page) => {
     if(!page.url().includes('logo='+next)||await page.locator('body').getAttribute('data-identity')!==next)failures.push('identity selection');
     if(!await page.locator('.brand-link img').getAttribute('src').then(s=>s.includes(next)))failures.push('identity logo');
     await page.locator('#identity-select').selectOption(logo);await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(4600);
-    if(await page.evaluate(()=>document.getAnimations().some(a=>a.playState==='running'&&a.timeline===document.timeline)))failures.push('motion did not settle');
+    if(!await page.evaluate(()=>document.getAnimations().some(a=>a.animationName==='mouth-upper'&&a.playState==='running')))failures.push('automatic mouth motion stopped');
     await page.screenshot({path:output+'landing-'+logo+'-full.png',fullPage:true});
     await page.setViewportSize({width:390,height:844});await page.screenshot({path:output+'landing-'+logo+'-mobile.png',fullPage:true});
   }
@@ -95,5 +95,6 @@ async (page) => {
   if(await page.evaluate(()=>document.getAnimations().length))failures.push('reduced motion');
   await page.locator('.preview-bar a').click();if(!page.url().includes('task=landing'))failures.push('return to task');
   await page.locator('.review-nav a[href="./#tasks"]').click();if(await page.locator('.task-link').count()!==13)failures.push('return to hub');
+  await page.emulateMedia({reducedMotion:'no-preference'});
   return {results,failures,errors};
 }

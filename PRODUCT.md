@@ -26,4 +26,4 @@ Separate the reviewer journey from the prospective-client journey. Give each pag
 
 ## Accessibility & Inclusion
 
-Preserve readable contrast, keyboard navigation, native controls, clear focus and narrow-screen layouts. Motion starts automatically without an enable button; reduced-motion preferences receive a quiet alternative. Limit autonomous decorative sequences to under five seconds and avoid flashing. Never hide essential content behind animation.
+Preserve readable contrast, keyboard navigation, native controls, clear focus and narrow-screen layouts. Motion starts automatically without an enable button; reduced-motion preferences receive a quiet alternative. Decorative mouth and optical artwork loops automatically with a footer pause control. Keep text steady and avoid flashing. Never hide essential content behind animation.
