@@ -39,5 +39,17 @@ Plain, specific sentences. Say what is in the shot, what to change and why. No i
 ## Implementation constraints
 GitHub Pages with project-relative paths. Keep internal shared archive URLs and source file index out of the public package. Review frames can be published as the user-requested assignment examples, not the full private videos. Preserve quotation #578 prices and scope; flag conflicting dates/durations outside the mockup rather than silently changing terms. Use self-hosted OFL fonts. Screenshot each task, render every PDF, verify exports and public links.
 
+## Graphic revision
+
+Keep the existing seven-section company structure. Editorial uses ink and orange optical framing, Signal uses blue/yellow and an arched image, Studio uses orange/black and cut geometry. The selected logo, typography and color treatment carry through the opening, work, tour and contact surfaces.
+
+The assignment homepage has four chapters and a collapsible mapping to the 21-page source brief. Titles answer requirements; descriptions identify the evidence rather than repeat the rationale. Internal responses use native section selection.
+
+Motion vocabulary: a short opening reveal, scroll-linked perspective framing, an Anjuna preview that follows the setting/phase/proposal story, and immediate control feedback. No scroll hijacking or hidden-content entrances. Native scroll timelines enhance supporting graphics where supported. Other browsers retain the composition.
+
+At tablet and phone sizes, Anjuna becomes three inline image/text steps rather than a sticky desktop preview. Chapter links become a two-column index on phones. Headline and imagery have separate layout regions at every size.
+
+See BRIEF-COVERAGE.md for the requirement map and evidence boundaries.
+
 ## Open questions
 Founder portrait and final identity approval remain user decisions. Source examples are sampled-frame reviews unless full playback is explicitly evidenced. Before issuing a real quotation, confirm the two source dates, teaser duration and legal company spelling.

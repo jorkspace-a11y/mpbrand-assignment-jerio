@@ -1,5 +1,5 @@
 async (page) => {
-  const cdp=await page.context().newCDPSession(page);await cdp.send('Network.enable');await cdp.send('Network.setCacheDisabled',{cacheDisabled:true});
+  const cdp=await page.context().newCDPSession(page);await cdp.send('Emulation.setFocusEmulationEnabled',{enabled:true});await page.bringToFront();await cdp.send('Network.enable');await cdp.send('Network.setCacheDisabled',{cacheDisabled:true});
   await page.emulateMedia({reducedMotion:'reduce'});
   const base='http://127.0.0.1:8768/mpbrand-assignment-jerio/';
   const output='C:/Users/hp/OneDrive/Documents/ChatGPT/Meta Pacific Projects/output/playwright/task-qa/';
@@ -9,11 +9,19 @@ async (page) => {
   await page.goto(base);await page.waitForFunction(()=>window.assignmentTasks);
   const tasks=await page.evaluate(()=>window.assignmentTasks);
   const results=[];
+  if(await page.locator('.task-chapter').count()!==4)failures.push('four chapters');
+  await page.locator('.brief-map summary').click();
+  if(await page.locator('#brief-coverage a').count()!==13)failures.push('brief coverage links');
   for(const [i,task] of tasks.entries()){
     const id=task[0];await page.setViewportSize({width:1440,height:1000});
     await page.goto(base+'phase.html?task='+id);
     await page.locator('.phase-block:not(.print-grid-overview)').first().waitFor();
     await page.evaluate(async()=>{document.querySelectorAll('img').forEach(x=>x.loading='eager');await document.fonts.ready;await Promise.all([...document.images].map(x=>x.decode().catch(()=>{})));});
+    const sections=await page.locator('.response-nav select option[value]:not([value=""])').count();
+    if(!sections)failures.push({id,missingJump:true});
+    else {await page.locator('.response-nav select').selectOption('response-'+sections);if(!await page.locator('#response-'+sections+' h2').evaluate(e=>e===document.activeElement))failures.push({id,jumpFocus:true});await page.locator('.response-nav select').selectOption('response-1');if(!await page.locator('#response-1 h2').evaluate(e=>e===document.activeElement))failures.push({id,firstJump:true});await page.evaluate(()=>scrollTo(0,0));}
+    const crowded=await page.locator('.social-art.orange:visible').evaluateAll(nodes=>nodes.some(n=>{const p=n.querySelector('.photo').getBoundingClientRect(),h=n.querySelector('.headline').getBoundingClientRect(),c=n.querySelector('.small-copy').getBoundingClientRect();return h.bottom>p.top||p.bottom>c.top;}));
+    if(crowded)failures.push({id,orangeOverlap:true});
     const missing=await page.evaluate(()=>[...document.images].filter(x=>!x.naturalWidth).map(x=>x.getAttribute('src')));
     if(missing.length)failures.push({id,missing});
     if(/Jerio|area\.lab|boncei|invent\.|Warhol|Oddly|Adobe/.test(await page.locator('body').innerText()))failures.push({id,unwantedCredit:true});
@@ -58,9 +66,19 @@ async (page) => {
     await page.evaluate(async()=>{document.querySelectorAll('img[src]').forEach(i=>i.loading='eager');await document.fonts.ready;await Promise.all([...document.querySelectorAll('img[src]')].map(i=>i.decode()));});
     for(const width of [320,390,768,1024,1440]){
       await page.setViewportSize({width,height:1000});
-      const geometry=await page.evaluate(()=>{const image=document.querySelector('.hero-film').getBoundingClientRect();return {overflow:document.documentElement.scrollWidth>innerWidth+1,overlap:[...document.querySelectorAll('#landing-headline,.hero-bottom')].some(el=>el.getBoundingClientRect().bottom>image.top)};});
+      const geometry=await page.evaluate(()=>{const image=document.querySelector('.hero-film').getBoundingClientRect();return {overflow:document.documentElement.scrollWidth>innerWidth+1,overlap:[...document.querySelectorAll('#landing-headline,.hero-bottom')].some(el=>(()=>{const r=el.getBoundingClientRect();return r.left<image.right&&r.right>image.left&&r.top<image.bottom&&r.bottom>image.top;})())};});
       if(geometry.overflow||geometry.overlap)failures.push({logo,width,...geometry});
     }
+    await page.setViewportSize({width:1440,height:1000});
+    await page.locator('[data-tour-view="2"]').click();
+    if(!await page.locator('#tour-preview').getAttribute('src').then(s=>s.includes('interior')))failures.push('tour manual selection');
+    await page.locator('.tour-step[data-tour="1"]').scrollIntoViewIfNeeded();
+    await page.evaluate(()=>{const r=document.querySelector('.tour-step[data-tour="1"]').getBoundingClientRect();scrollBy(0,r.top-innerHeight*.3)});
+    await page.waitForTimeout(1100);
+    if(!await page.locator('#tour-preview').getAttribute('src').then(s=>s.includes('palms')))failures.push('tour scroll sequence');
+    await page.setViewportSize({width:390,height:844});
+    if(await page.locator('.tour-step img:visible').count()!==3)failures.push('mobile tour sequence');
+    await page.setViewportSize({width:1440,height:1000});
     await page.locator('[data-project=sakti]').click();if(!await page.locator('dialog').evaluate(d=>d.open))failures.push('dialog open');
     await page.keyboard.press('Escape');if(!await page.locator('[data-project=sakti]').evaluate(b=>b===document.activeElement))failures.push('dialog focus return');
     await page.locator('.service-lines details').nth(1).locator('summary').click();if(!await page.locator('.service-lines details').nth(1).evaluate(d=>d.open))failures.push('service disclosure');
@@ -68,7 +86,7 @@ async (page) => {
     if(!page.url().includes('logo='+next)||await page.locator('body').getAttribute('data-identity')!==next)failures.push('identity selection');
     if(!await page.locator('.brand-link img').getAttribute('src').then(s=>s.includes(next)))failures.push('identity logo');
     await page.locator('#identity-select').selectOption(logo);await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(4600);
-    if(await page.evaluate(()=>document.getAnimations().some(a=>a.playState==='running')))failures.push('motion did not settle');
+    if(await page.evaluate(()=>document.getAnimations().some(a=>a.playState==='running'&&a.timeline===document.timeline)))failures.push('motion did not settle');
     await page.screenshot({path:output+'landing-'+logo+'-full.png',fullPage:true});
     await page.setViewportSize({width:390,height:844});await page.screenshot({path:output+'landing-'+logo+'-mobile.png',fullPage:true});
   }

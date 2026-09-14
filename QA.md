@@ -25,6 +25,18 @@
 - All 20 PDFs rendered successfully and reviewed as contact sheets. Task 08 now gives each landing direction its own unclipped preview page. The PDF check confirms watermark removal, preserved commercial prices, one-page commercial layouts and public links.
 - Independent code review raised the return link as a journey concern. It is retained deliberately as the single route back from this assignment exploration; the product brief clarifies this exception.
 
+## Graphic direction revision
+
+- Four assignment chapters with 13 requirement-specific questions and a collapsible source-page map. Coverage is documented in BRIEF-COVERAGE.md.
+- All 13 responses have working first/last section jumps and focus transfer. The jump resets to a neutral prompt so every section can be chosen again.
+- Three distinct company hero compositions keep the text and photograph in separate regions. The seven-section structure is preserved.
+- Anjuna follows setting, Palms and proposed interior through scrolling or direct view selection. Tablet/phone layouts show the three images inline.
+- Local review/export suite completed with zero failures and zero page errors. It checks five viewport widths, all task jumps, three identities, tour selection, disclosures, dialogs, focus return, reduced motion, quotation values and local input handling.
+- Browser focus emulation is enabled for motion tests: inactive embedded tabs can defer scroll and animation events.
+- Independent static review found first-section selection and low-contrast focus indicators. Both were corrected, including the Signal hero/contact and Studio work variants.
+- PDF focus outlines are suppressed. The current set remains 20 PDFs / 72 pages. Rendered contact sheets were inspected; separate PDF content/link checks preserve source prices and remove local preview URLs.
+- Tests use Chromium viewport emulation, not physical phone/tablet testing or a cross-browser certification.
+
 ## Evidence boundaries
 
 The three Instagram studies review covers and captions, not complete playback or performance. Six annotation clips, two teasers and one How To sample were inspected through sampled frames. Motion/timing directions are proposed edit briefs.
