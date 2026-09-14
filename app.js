@@ -65,7 +65,7 @@ function showMedia(project,key){
   const mount=$('#media-mount');mount.replaceChildren();
   const description=el('div','media-loading');description.append(el('p','',`This ${key==='tour'?'virtual tour':'film'} loads from the existing external project source. Playback depends on that service and your connection.`));
   const load=el('button','',`Load ${key==='tour'?'virtual tour':'film'}`);description.append(load);mount.append(description);
-  const link=el('a','',`Open source in a new tab ↗`);link.href=project[key];link.target='_blank';link.rel='noopener';mount.append(link);
+  const link=el('a','',`Open source in a new tab `);link.href=project[key];link.target='_blank';link.rel='noopener';mount.append(link);
   load.addEventListener('click',()=>{const frame=el('iframe');frame.title=`${project.title} ${key}`;frame.src=project[key];frame.allow='autoplay; fullscreen; picture-in-picture; gyroscope; accelerometer';frame.allowFullscreen=true;description.replaceWith(frame);mount.append(el('p','media-status','If the player stays blank or reports an error, use the source link. An embedded frame loading does not confirm playback.'));});
 }
 document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{
@@ -77,7 +77,7 @@ document.querySelectorAll('[data-project]').forEach(button=>button.addEventListe
 
 function renderAssets(){
   const selected=assets.filter(asset=>filter==='All'||asset.group===filter);$('#asset-grid').replaceChildren();
-  selected.forEach(asset=>{const button=el('button');const img=el('img');img.src=asset.file;img.alt=asset.name;img.loading='lazy';button.append(img,el('span','',asset.name));button.addEventListener('click',()=>{const content=el('div');const full=img.cloneNode();const a=el('a','','Open original file ↗');a.href=asset.file;a.target='_blank';a.rel='noopener';content.append(full,a,el('p','',`${asset.group}. Original asset from the existing local website. File name preserved; final publication rights and selection need approval.`));openViewer(asset.name,content);});$('#asset-grid').append(button);});
+  selected.forEach(asset=>{const button=el('button');const img=el('img');img.src=asset.file;img.alt=asset.name;img.loading='lazy';button.append(img,el('span','',asset.name));button.addEventListener('click',()=>{const content=el('div');const full=img.cloneNode();const a=el('a','','Open original file ');a.href=asset.file;a.target='_blank';a.rel='noopener';content.append(full,a,el('p','',`${asset.group}. Original asset from the existing local website. File name preserved; final publication rights and selection need approval.`));openViewer(asset.name,content);});$('#asset-grid').append(button);});
   $('#asset-count').textContent=`${selected.length} of ${assets.length} work previews`;
 }
 document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{filter=button.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));renderAssets();}));

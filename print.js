@@ -18,5 +18,5 @@ window.printAssignment=function(id){window.prepareAssignmentPrint(id);window.pri
 window.addEventListener('beforeprint',()=>window.prepareAssignmentPrint());
 window.addEventListener('afterprint',window.finishAssignmentPrint);
 document.querySelectorAll('main>.section-pad[id],main>.motion-stage[id]').forEach(section=>{
-  const button=document.createElement('button');button.type='button';button.className='print-control section-print';button.textContent='Save section as PDF ↗';button.addEventListener('click',()=>window.printAssignment(section.id));section.append(button);
+  const button=document.createElement('button');button.type='button';button.className='print-control section-print';button.textContent='Save section as PDF ';button.addEventListener('click',()=>window.printAssignment(section.id));section.append(button);
 });

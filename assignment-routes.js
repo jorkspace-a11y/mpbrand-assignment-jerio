@@ -28,7 +28,7 @@ function art(route, format) {
   if(type==='reel')box.append(make('span','caption',['THE PLACE. THE ROUTE. THE DETAILS.','FROM THE SETTING TO THE SPACE.','LIGHT. TEXTURE. PERSPECTIVE.'][Number(id.slice(-1))-1]));
   if(type==='story'){
     if(id==='story-1'){const a=make('div','answers');['The setting.','The space.','The details.'].forEach(t=>a.append(make('span','',t)));box.append(a);}
-    else box.append(make('div','story-link',id==='story-2'?'See the project ↗':'Open the tour ↗'));
+    else box.append(make('div','story-link',id==='story-2'?'See the project ':'Open the tour '));
   }
   return box;
 }
@@ -39,14 +39,14 @@ for(const route of routeData){
   const board=make('div','logo-board');board.dataset.logo=route.id;const logo=make('img');logo.src=`logos/${route.id}-ink.svg`;logo.alt=`Meta Pacific ${route.id} wordmark`;board.append(logo);
   const why=make('div','route-why');const reasoning=make('div');reasoning.append(make('h3','','Why this direction'),make('p','',route.why));const motion=make('div');motion.append(make('h3','','Motion principle'),make('p','',route.motion));why.append(reasoning,motion);
   const links=make('div','logo-downloads');for(const variant of ['ink','paper']){const a=make('a','',`Outlined SVG / ${variant}`);a.href=`logos/${route.id}-${variant}.svg`;a.download='';links.append(a);}
-  const print=make('button','print-control','Save this direction as PDF ↗');print.type='button';print.addEventListener('click',()=>window.printAssignment(route.id));links.append(print);
+  const print=make('button','print-control','Save this direction as PDF ');print.type='button';print.addEventListener('click',()=>window.printAssignment(route.id));links.append(print);
   overview.append(head,board,why,links);section.append(overview);
   for(const [type,label] of [['feed','Feed posts'],['carousel','Carousel slides'],['reel','Reel frames'],['story','Story frames']]){
     const group=make('section','application-group');group.id=route.id+'-'+type;
     const heading=make('div','group-heading');heading.append(make('h3','',route.title+' / '+label));
-    const print=make('button','print-control','Save PDF ↗');print.type='button';print.addEventListener('click',()=>window.printAssignment(group.id));heading.append(print);group.append(heading);
+    const print=make('button','print-control','Save PDF ');print.type='button';print.addEventListener('click',()=>window.printAssignment(group.id));heading.append(print);group.append(heading);
     const grid=make('div','application-grid');
-    formats.filter(f=>f[0].startsWith(type+'-')).forEach(format=>{const wrap=make('div','application-item');wrap.append(art(route,format));const a=make('a','download','Download PNG ↗');a.href=`artwork/assignment/${route.id}-${format[0]}.png`;a.download='';wrap.append(a);grid.append(wrap);});
+    formats.filter(f=>f[0].startsWith(type+'-')).forEach(format=>{const wrap=make('div','application-item');wrap.append(art(route,format));const a=make('a','download','Download PNG ');a.href=`artwork/assignment/${route.id}-${format[0]}.png`;a.download='';wrap.append(a);grid.append(wrap);});
     group.append(grid);section.append(group);
   }
   document.querySelector('#routes').append(section);

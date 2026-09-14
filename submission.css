@@ -1,0 +1,161 @@
+/* Submission edition: photographic scale, editorial spacing and film-led motion. */
+.submission{--paper:#f6f6f4;--red:#df301c;--line:#494949;--muted:#c7c7c3}
+.submission h1,.submission h2,.submission h3{letter-spacing:-.035em}
+.submission .chapter-symbol,.submission .task-arrow,.submission .graphic-eye,.submission .graphic-cut,.submission .hero-star,.submission .cutout-eye,.submission .optical-disc,.submission .graphic-orbit,.submission .contact-orbit{display:none!important}
+.submission .chapter-nav{position:relative;top:auto;grid-template-columns:repeat(4,1fr);border:0;background:transparent;gap:8px}
+.submission .chapter-nav a{border-bottom:1px solid #777;border-radius:0;background:transparent;color:inherit;padding:12px 0;justify-content:flex-start}
+.submission .chapter-nav a[aria-current]{border-color:#df301c;color:#ff8c78;background:transparent}
+.submission .task-chapter{grid-template-columns:1fr 1.45fr;gap:11%;padding:70px 0}
+.submission .task-chapter>header{display:block}.submission .task-chapter h3{font-family:Body,Arial,sans-serif;font-weight:700;max-width:15ch;font-size:clamp(32px,3.6vw,52px)}
+.submission .task-link{grid-template-columns:26px 1fr;padding:24px 0}.submission .task-link strong{font-weight:500}.submission .task-link:hover strong{text-decoration:underline;text-underline-offset:5px}
+.submission .assignment-hero{display:grid;grid-template-columns:1fr;gap:0;padding:0 4vw 70px}
+.submission .hero-message{display:grid;grid-template-columns:1.5fr 1fr;gap:22px 8%;padding:55px 0 35px;align-items:end}
+.submission .hero-message .eyebrow{grid-column:1/-1;text-transform:none;letter-spacing:0;font-size:15px}
+.submission .hero-message h1{font:700 clamp(44px,6.5vw,96px)/.98 Body,Arial,sans-serif;letter-spacing:-.04em;margin:0}.submission .hero-message h1 span{color:#f6f6f4}
+.submission .hero-message>p:not(.eyebrow){font-size:18px;max-width:37ch}.submission .hero-message .primary{grid-column:2;font-size:16px;background:transparent;color:#f6f6f4;border:0;border-bottom:1px solid #f6f6f4;padding:14px 0;justify-self:start}
+.submission .hero-art{height:460px!important;margin:0!important;overflow:hidden;background:#252525}.submission .hero-art>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1);transform:none;animation:film-breathe 10s ease-in-out infinite alternate}
+.submission .hero-art::after{content:'META PACIFIC / FIELD NOTES';position:absolute;left:25px;bottom:24px;padding:7px 10px;background:#121212;color:#fff;font:14px Body,Arial,sans-serif;letter-spacing:0}
+.submission .review-intro{background:#df301c;color:#fff;grid-template-columns:1.4fr 1fr}.submission .review-intro h2{font-family:Body,Arial,sans-serif;font-weight:700}.submission .review-intro p{font-size:18px}
+.submission .directory-heading h2,.submission .library-page h1{font-family:Body,Arial,sans-serif;font-weight:700;letter-spacing:-.04em}
+body.submission[data-task] .phase-head{min-height:460px;padding:70px var(--gutter);justify-content:flex-end;border-bottom:1px solid var(--line)}
+body.submission[data-task] .phase-head::after{display:none}body.submission[data-task] .phase-head h1{font:700 clamp(42px,5.5vw,78px)/1.02 Body,Arial,sans-serif;max-width:18ch;margin:24px 0}
+body.submission[data-task] .phase-head>p{font-size:19px;max-width:65ch}.submission .phase-block>h2{font:700 clamp(32px,3.8vw,54px)/1.08 Body,Arial,sans-serif;max-width:24ch}
+.submission .response-nav{position:relative;top:auto;border-top:0;border-bottom:1px solid var(--line);padding:15px var(--gutter)}
+.submission .response-nav select{width:min(65vw,450px);max-width:100%;min-height:44px}.submission .phase-block{padding-top:64px;padding-bottom:70px}
+.submission .phase-grid img{filter:grayscale(.3)}.submission .founder-name{font-family:Body,Arial,sans-serif;font-weight:700;font-size:clamp(48px,6vw,86px);letter-spacing:-.04em}
+.submission .library-art{columns:3;column-gap:28px}.submission .library-art a{margin-bottom:28px}.submission .library-jumps{font-size:16px}
+/* Each frame has its own composition, rather than a repeated icon + headline template. */
+.submission .campaign-frame[class]{position:relative;isolation:isolate;overflow:hidden;container-type:inline-size;aspect-ratio:4/5;background:#121212;color:#f6f6f4}
+.submission .campaign-frame[class] :is(.symbol,.credit,.answers,.counter,.caption,.story-link){display:none}
+.submission .campaign-frame[class] :is(.photo,.detail-photo){position:absolute;inset:auto;display:block;object-fit:cover;transform:none;filter:none;mix-blend-mode:normal;z-index:0;width:100%;height:100%}
+.submission .campaign-frame[class] :is(.brand,.logo){position:absolute;left:6%;top:5%;right:auto;bottom:auto;width:34%;height:6%;z-index:3;object-fit:contain;object-position:left;filter:none}
+.submission .campaign-frame[class] .headline{position:absolute;left:6%;right:6%;top:auto;bottom:16%;margin:0;padding:0;max-width:none;font:700 13cqw/1.02 Body,Jost,Arial,sans-serif;letter-spacing:-.035em;white-space:pre-line;color:inherit;background:none;text-shadow:none;z-index:2;transform:none}
+.submission .campaign-frame[class] :is(.small-copy,.copy){position:absolute;left:6%;right:6%;bottom:5%;top:auto;margin:0;padding:0;font:400 3cqw/1.35 Body,Jost,Arial,sans-serif;letter-spacing:0;color:inherit;max-width:none;background:none;z-index:3}
+.submission .campaign-frame[class] .frame-note{position:absolute;right:6%;top:6%;font:400 2.4cqw/1.2 Body,Jost,Arial,sans-serif;z-index:3;text-align:right;max-width:38%}
+.submission .campaign-frame[class] .detail-photo{display:none}
+.submission .campaign-frame[class]::before,.submission .campaign-frame[class]::after{content:none}
+.submission .campaign-frame[class]:is(.layout-space,.layout-immersive,.layout-route,.layout-arrival) .photo{inset:0}
+.submission .campaign-frame[class].layout-cinema{background:#f6f6f4;color:#121212}
+.submission .campaign-frame[class].layout-cinema .photo{left:3%;top:3%;width:94%;height:58%;filter:grayscale(1)}
+.submission .campaign-frame[class].layout-cinema .brand,.submission .campaign-frame[class].layout-cinema .logo{filter:invert(1);top:6%}
+.submission .campaign-frame[class].layout-cinema .headline{font-family:Display,Anton,Arial,sans-serif;font-weight:400;bottom:10%;font-size:15cqw;line-height:.98;letter-spacing:0;left:3%;right:3%}
+.submission .campaign-frame[class].layout-cinema :is(.copy,.small-copy){font-size:2.55cqw;bottom:3%;left:3%}
+.submission .campaign-frame[class].layout-cinema .frame-note{color:#fff}
+.submission .campaign-frame[class].layout-immersive .photo{filter:brightness(.62);object-position:34% center}
+.submission .campaign-frame[class].layout-immersive .headline{font-size:12.5cqw;bottom:26%;line-height:1.05}
+.submission .campaign-frame[class].layout-immersive :is(.copy,.small-copy){bottom:9%;max-width:58%}
+.submission .campaign-frame[class].layout-negative .photo{width:35%;height:24%;right:6%;top:25%;filter:grayscale(1);mix-blend-mode:screen}
+.submission .campaign-frame[class].layout-negative .headline{bottom:13%;font:400 25cqw/.92 Display,Anton,Arial,sans-serif;letter-spacing:0}
+.submission .campaign-frame[class].layout-negative .frame-note{top:38%;left:6%;right:48%;max-width:none;text-align:left;font-size:3cqw}
+.submission .campaign-frame[class].layout-architecture{background:#f6f6f4;color:#121212}
+.submission .campaign-frame[class].layout-architecture .photo{left:6%;top:20%;width:53%;height:42%;filter:grayscale(.3)}
+.submission .campaign-frame[class].layout-architecture .headline{top:auto;bottom:13%;font-size:10.5cqw;max-width:85%}
+.submission .campaign-frame[class].layout-architecture .frame-note{top:21%;right:6%;width:25%;font-size:3cqw;text-align:left}
+.submission .campaign-frame[class].layout-founder{background:#df301c;color:white}
+.submission .campaign-frame[class].layout-founder .photo{right:6%;top:58%;height:24%;width:38%;filter:grayscale(1);object-position:66% center}
+.submission .campaign-frame[class].layout-founder .headline{top:20%;bottom:auto;font-size:14cqw;max-width:85%;line-height:1}
+.submission .campaign-frame[class].layout-founder .frame-note{top:64%;right:52%;left:6%;max-width:none;text-align:left;font-size:3cqw}
+.submission .campaign-frame[class].layout-route .photo{object-position:25% center;filter:grayscale(1) brightness(.66)}
+.submission .campaign-frame[class].layout-route .headline{bottom:26%;font-size:21cqw;letter-spacing:-.04em}
+.submission .campaign-frame[class].layout-evidence .photo{left:6%;top:18%;width:40%;height:23%;filter:grayscale(1)}
+.submission .campaign-frame[class].layout-evidence .headline{top:47%;bottom:auto;font-size:13cqw;color:#f6f6f4}
+.submission .campaign-frame[class].layout-evidence .frame-note{left:53%;right:6%;top:20%;max-width:none;text-align:left;font-size:3cqw;color:#ff8c78}
+.submission .campaign-frame[class].layout-process{background:#f6f6f4;color:#121212}
+.submission .campaign-frame[class].layout-process .photo{inset:0 auto 0 0;width:39%;height:100%;filter:grayscale(1)}
+.submission .campaign-frame[class].layout-process :is(.logo,.brand){left:45%;top:6%;width:45%}
+.submission .campaign-frame[class].layout-process .headline{left:45%;right:5%;top:26%;bottom:auto;font-size:8.6cqw}
+.submission .campaign-frame[class].layout-process :is(.copy,.small-copy){left:45%;right:5%;bottom:8%;font-size:2.8cqw}
+.submission .campaign-frame[class].layout-process .frame-note{top:17%;right:5%;left:45%;max-width:none;text-align:left}
+.submission .campaign-frame[class].layout-space .photo{filter:brightness(.62)}
+.submission .campaign-frame[class].layout-space .headline{font-size:12cqw;bottom:33%}
+.submission .campaign-frame[class].layout-space :is(.copy,.small-copy){left:46%;bottom:10%}
+.submission .campaign-frame[class].layout-case{background:#df301c;color:#fff}
+.submission .campaign-frame[class].layout-case .photo{top:19%;left:37%;width:57%;height:32%;filter:grayscale(1)}
+.submission .campaign-frame[class].layout-case .headline{bottom:13%;font-size:12cqw}
+.submission .campaign-frame[class].layout-case .frame-note{left:6%;right:68%;top:22%;max-width:none;text-align:left;font-size:3cqw}
+.submission .campaign-frame[class].layout-arrival .photo{filter:grayscale(1) brightness(.65);object-position:65% center}
+.submission .campaign-frame[class].layout-arrival .headline{top:24%;bottom:auto;font-size:23cqw;line-height:.95;font-family:Display,Anton,Arial,sans-serif;font-weight:400;letter-spacing:0}
+.submission .campaign-frame[class].layout-compare{background:#f6f6f4;color:#121212}
+.submission .campaign-frame[class].layout-compare .photo{left:0;top:0;width:100%;height:50%;filter:grayscale(1)}
+.submission .campaign-frame[class].layout-compare :is(.logo,.brand){filter:invert(1)}
+.submission .campaign-frame[class].layout-compare .headline{bottom:13%;font-size:13cqw}
+.submission .campaign-frame[class].layout-compare .frame-note{top:54%;left:6%;right:auto;max-width:none}
+.submission .campaign-frame[class].layout-edit .photo{top:35%;left:0;width:100%;height:30%;filter:grayscale(1)}
+.submission .campaign-frame[class].layout-edit .headline{top:17%;bottom:auto;font-size:10.5cqw;max-width:84%}
+.submission .campaign-frame[class].layout-edit .frame-note{top:70%;left:6%;right:auto;text-align:left;max-width:60%;font-size:3cqw}
+.submission .campaign-frame[class].layout-type .photo{width:27%;height:21%;bottom:17%;right:6%;filter:grayscale(1)}
+.submission .campaign-frame[class].layout-type .headline{top:19%;bottom:auto;font-family:Display,Anton,Arial,sans-serif;font-size:19cqw;line-height:.98;font-weight:400;letter-spacing:0}
+.submission .campaign-frame[class].layout-type .frame-note{top:73%;left:6%;right:40%;max-width:none;text-align:left;font-size:2.8cqw}
+.submission .campaign-frame[class].layout-closing{background:#f6f6f4;color:#121212}
+.submission .campaign-frame[class].layout-closing .photo{top:18%;left:6%;width:88%;height:45%;filter:grayscale(.3)}
+.submission .campaign-frame[class].layout-closing .headline{bottom:13%;font-size:9cqw;max-width:85%}
+.submission .campaign-frame[class].layout-closing .frame-note{display:none}
+.submission .campaign-frame[class].portrait{aspect-ratio:9/16;max-height:none}
+.submission .campaign-frame[class].portrait :is(.brand,.logo){top:9%;height:5%}
+.submission .campaign-frame[class].portrait :is(.small-copy,.copy){bottom:16%;font-size:3.1cqw;right:12%}
+.submission .campaign-frame[class].portrait .frame-note{top:10%}
+.submission .campaign-frame[class].portrait.layout-immersive .headline{top:29%;bottom:auto;font-size:14cqw}
+.submission .campaign-frame[class].portrait.layout-space .headline{top:30%;bottom:auto;font-size:13cqw}
+.submission .campaign-frame[class].portrait.layout-case .headline{bottom:32%}
+.submission .campaign-frame[class].portrait.layout-case .frame-note{top:23%}
+.submission .campaign-frame[class].portrait.layout-compare .photo{height:50%;filter:brightness(.7)}
+.submission .campaign-frame[class].portrait.layout-compare .headline{top:54%;bottom:auto;font-size:11cqw}
+.submission .campaign-frame[class].portrait.layout-compare .frame-note{top:51%;left:6%;right:auto}
+.submission .campaign-frame[class].wide{aspect-ratio:1.91/1}
+.submission .campaign-frame[class].wide .headline{font-size:7cqw;max-width:48%;bottom:18%}
+.submission .campaign-frame[class].wide :is(.copy,.small-copy){font-size:2cqw;max-width:40%;left:55%;bottom:15%}
+.submission .campaign-frame[class].wide :is(.logo,.brand){width:25%;height:10%}
+.submission .campaign-frame[class].wide.layout-architecture .photo{left:53%;top:0;width:47%;height:100%;filter:brightness(.4)}
+.submission .campaign-frame[class].wide.layout-architecture :is(.copy,.small-copy){color:white}.submission .campaign-frame[class].wide .frame-note{display:none}
+/* Only photographic/mask elements move. Essential reading stays still. */
+.submission .campaign-frame.portrait .photo{animation:film-breathe 10s ease-in-out infinite alternate}
+@keyframes film-breathe{from{scale:1.04;translate:-1.5% 0}to{scale:1.12;translate:1.5% 0}}
+.submission .campaign-frame.layout-negative .photo{animation:focus-pull 8s ease-in-out infinite}
+@keyframes focus-pull{0%,100%{filter:grayscale(1) blur(0);clip-path:inset(0)}50%{filter:grayscale(1) blur(1.6px);clip-path:inset(0 6% 0 0)}}
+/* Company page: a clear opening, a real photographic sequence, then the business. */
+.submission[data-identity] .site-header{background:#f6f6f4;color:#121212}
+body.submission[data-identity] .landing-hero{display:flex;flex-direction:column;padding:30px 4vw 55px;gap:0;background:#121212;color:#f6f6f4}
+body.submission[data-identity] .hero-heading{display:grid;grid-template-columns:1.5fr 1fr;gap:20px 7%;width:100%;padding:20px 0 35px}
+body.submission[data-identity] .hero-category{grid-column:1/-1;font-size:15px;margin:0 0 22px;text-transform:none}
+body.submission[data-identity] .landing-hero h1{font:700 clamp(42px,6vw,88px)/1.01 Jost,Arial,sans-serif;max-width:17ch;letter-spacing:-.04em}
+body.submission[data-identity] .landing-hero h1 span{color:inherit}
+body.submission[data-identity] .hero-bottom{display:block;align-self:end;margin:0;padding:0}.submission[data-identity] .hero-bottom p{font-size:17px;max-width:35ch}.submission[data-identity] .hero-bottom a{margin-top:24px;max-width:165px;font-size:16px}
+body.submission[data-identity] .hero-film{height:500px;max-width:none;width:100%;padding:0;align-self:stretch;margin:0;position:relative}
+body.submission[data-identity] .hero-window{inset:0 0 34px;width:100%;height:calc(100% - 34px);clip-path:none;transform:none}
+body.submission[data-identity] .hero-window img{filter:grayscale(1);object-position:center 55%;animation:film-breathe 10s ease-in-out infinite alternate}
+body.submission[data-identity] .hero-film figcaption{position:absolute;bottom:0;left:0;right:0;margin:0;padding:9px 0 0;color:inherit;font-size:12px}
+body.submission[data-identity=signal] .landing-hero{background:#df301c;color:white}
+body.submission[data-identity=signal] .hero-heading{grid-template-columns:1.6fr 1fr}body.submission[data-identity=signal] .hero-window img{filter:none}
+body.submission[data-identity=signal] .landing-hero h1{font-family:Anton;font-weight:400;letter-spacing:0;text-transform:uppercase;max-width:14ch}
+body.submission[data-identity=signal] .hero-film{width:75%;align-self:flex-end;height:430px}
+body.submission[data-identity=studio] .landing-hero{background:#f6f6f4;color:#121212;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:stretch}
+body.submission[data-identity=studio] .hero-heading{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:25px}
+body.submission[data-identity=studio] .landing-hero h1{font-size:clamp(42px,5vw,72px)}
+body.submission[data-identity=studio] .hero-bottom{align-self:flex-start}.submission[data-identity=studio] .hero-film{height:650px!important}
+.submission[data-identity] .section-intro h2,.submission[data-identity] .work-heading h2{font-family:Jost,Arial,sans-serif;font-weight:700}
+.submission[data-identity] .contact-section{background:#df301c;color:#fff;padding:80px var(--gutter);min-height:0}.submission[data-identity] .contact-section h2{font-family:Jost;font-weight:700}
+.submission[data-identity=signal] .contact-section,.submission[data-identity=signal] .tour-section{background:#df301c;color:#fff;border:0}
+.submission[data-identity=studio] .contact-section{background:#121212;color:white}.submission[data-identity=studio] .tour-section{background:#e1e5e9;color:#121212}
+.submission[data-identity] .studio-word{font-family:Jost,Arial,sans-serif;font-weight:700}.submission[data-identity] .studio-word em{color:#b82b1c}
+.submission .route-title h2{font-family:Body,Arial,sans-serif;font-weight:700;font-size:clamp(42px,5vw,72px)}
+@media(max-width:767px){
+ .submission .hero-message{display:block;padding:32px 0}.submission .hero-message h1{font-size:12vw;margin:24px 0}.submission .hero-message>p:not(.eyebrow){font-size:17px}.submission .hero-art{height:320px!important}.submission .assignment-hero{padding:0 20px 35px}.submission .hero-message .primary{margin-top:20px}
+ .submission .chapter-nav{display:grid;grid-template-columns:1fr 1fr}.submission .task-chapter{display:block}.submission .task-chapter h3{max-width:18ch;margin-bottom:15px}.submission .task-chapter header p{margin:0 0 25px}.submission .task-chapter>header{display:block}
+ body.submission[data-task] .phase-head{padding:34px 20px 40px;min-height:0}body.submission[data-task] .phase-head h1{font-size:clamp(38px,10vw,60px)}.submission .response-nav{padding:12px 20px}.submission .response-nav label{width:100%;justify-content:space-between}.submission .phase-block{padding-top:36px;padding-bottom:40px}.submission .phase-block>h2{font-size:32px}
+ .submission .library-art{columns:2;column-gap:12px}.submission .library-art a{margin-bottom:12px}.submission .social-grid{gap:5px}.submission .social-grid figcaption{font-size:11px}
+ body.submission[data-identity] .landing-hero{display:flex;padding:25px 20px 30px;gap:0}body.submission[data-identity] .hero-heading{display:block;padding:0 0 28px}body.submission[data-identity] .landing-hero h1{font-size:clamp(42px,11vw,68px);max-width:15ch;margin:20px 0 25px}body.submission[data-identity] .hero-bottom p{font-size:17px;max-width:40ch}
+ body.submission[data-identity] .hero-film{height:330px!important;width:100%}body.submission[data-identity=signal] .hero-film{width:86%;align-self:flex-end}.submission[data-identity] .site-header{padding-top:15px;padding-bottom:15px}.submission[data-identity] .contact-section{padding:50px 20px}
+}
+@media(prefers-reduced-motion:reduce){.submission *,.submission *::before,.submission *::after{animation:none!important;transition:none!important}}
+@media print{
+ .submission *,.submission *::before,.submission *::after{animation:none!important;transition:none!important}
+ body.submission[data-task] .phase-head{padding:35px 0;min-height:610px;border:0}.submission .phase-block{padding:15px 0}
+ .submission .phase-block>h2{font-size:36px;max-width:30ch}.submission .response-nav{display:none}
+ .submission .campaign-frame[class]{aspect-ratio:4/5!important;height:auto!important;max-height:none!important}
+ .submission .campaign-frame[class].portrait{aspect-ratio:9/16!important}.submission .campaign-frame[class].wide{aspect-ratio:1.91/1!important}
+ .submission .art-row:has(.portrait){max-width:780px}.submission .art-row.two{max-width:650px}.submission .social-grid{max-width:760px}
+ .submission .social-grid{display:block;font-size:0;max-width:660px;orphans:1;widows:1}.submission .social-grid figure{display:inline-block;vertical-align:top;width:31.3%;margin:0 1% 12px 0}
+ .submission .print-grid-overview .social-grid{width:240px}.submission .print-grid-overview .social-grid figure{margin-bottom:2px}.submission .print-grid-overview figcaption{display:none}.submission .print-grid-overview .campaign-frame[class]{height:auto!important}
+ .submission .founder-hero .campaign-frame{width:270px!important;max-height:none!important}
+ .submission .phase-block>p{font-size:13px}.submission .art-row .campaign-frame :is(.small-copy,.copy){font-size:3cqw}
+}

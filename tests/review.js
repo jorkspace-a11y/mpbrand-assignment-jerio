@@ -1,6 +1,6 @@
 async (page) => {
   const cdp=await page.context().newCDPSession(page);await cdp.send('Emulation.setFocusEmulationEnabled',{enabled:true});await page.bringToFront();await cdp.send('Network.enable');await cdp.send('Network.setCacheDisabled',{cacheDisabled:true});
-  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.emulateMedia({media:'screen',reducedMotion:'reduce'});
   const base='http://127.0.0.1:8768/mpbrand-assignment-jerio/';
   const output='C:/Users/hp/OneDrive/Documents/ChatGPT/Meta Pacific Projects/output/playwright/task-qa/';
   const root='C:/Users/hp/Projects/mpbrand-assignment-jerio/';
@@ -20,15 +20,17 @@ async (page) => {
     const sections=await page.locator('.response-nav select option[value]:not([value=""])').count();
     if(!sections)failures.push({id,missingJump:true});
     else {await page.locator('.response-nav select').selectOption('response-'+sections);if(!await page.locator('#response-'+sections+' h2').evaluate(e=>e===document.activeElement))failures.push({id,jumpFocus:true});await page.locator('.response-nav select').selectOption('response-1');if(!await page.locator('#response-1 h2').evaluate(e=>e===document.activeElement))failures.push({id,firstJump:true});await page.evaluate(()=>scrollTo(0,0));}
-    const crowded=await page.locator('.social-art.orange:visible').evaluateAll(nodes=>nodes.some(n=>{const p=n.querySelector('.photo').getBoundingClientRect(),h=n.querySelector('.headline').getBoundingClientRect(),c=n.querySelector('.small-copy').getBoundingClientRect();return h.bottom>p.top||p.bottom>c.top;}));
-    if(crowded)failures.push({id,orangeOverlap:true});
+    const crowded=await page.locator('.campaign-frame:visible').evaluateAll(nodes=>nodes.filter(n=>{const h=n.querySelector('.headline')?.getBoundingClientRect(),c=n.querySelector('.small-copy,.copy')?.getBoundingClientRect();return h&&c&&h.left<c.right&&h.right>c.left&&h.top<c.bottom&&h.bottom>c.top;}).map(n=>n.dataset.design||n.dataset.export));
+    if(crowded.length)failures.push({id,textOverlap:crowded});
     const missing=await page.evaluate(()=>[...document.images].filter(x=>!x.naturalWidth).map(x=>x.getAttribute('src')));
     if(missing.length)failures.push({id,missing});
     if(/Jerio|area\.lab|boncei|invent\.|Warhol|Oddly|Adobe/.test(await page.locator('body').innerText()))failures.push({id,unwantedCredit:true});
     if(await page.locator('.reason,.motion-toggle,.reference-shelf').count())failures.push({id,removedUI:true});
     await page.screenshot({path:output+id+'-desktop.png',fullPage:true});
     const pdf=String(i+1).padStart(2,'0')+'-'+id+'-Jerio.pdf';
+    await page.emulateMedia({media:'print'});
     await page.pdf({path:root+'pdf/'+pdf,preferCSSPageSize:true,printBackground:true,displayHeaderFooter:false});
+    await page.emulateMedia({media:'screen'});
     for(const width of [320,390,768,1024,1440]){
       await page.setViewportSize({width,height:900});
       const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);
@@ -43,11 +45,15 @@ async (page) => {
     const prices=await page.locator('.service-price strong').allTextContents();
     const expected=layout==='scope'?['15,000,000','8,000,000']:['8,000,000','10,000,000'];
     if(JSON.stringify(prices)!==JSON.stringify(expected))failures.push({logo,layout,prices});
+    await page.emulateMedia({media:'print'});
     await page.pdf({path:root+`pdf/quotation-${logo}-${layout}-Jerio.pdf`,preferCSSPageSize:true,printBackground:true});
+    await page.emulateMedia({media:'screen'});
   }
   await page.locator('[name=mode]').selectOption('invoice');
   if(!await page.locator('.document-top').innerText().then(t=>t.includes('INVOICE / EXAMPLE')))failures.push('invoice label');
+    await page.emulateMedia({media:'print'});
   await page.pdf({path:root+'pdf/invoice-studio-spatial-Jerio.pdf',preferCSSPageSize:true,printBackground:true});
+    await page.emulateMedia({media:'screen'});
   await page.locator('[name=client]').fill('<img src=x onerror=alert(1)>');
   if(await page.locator('.document-meta img').count())failures.push('HTML injection');
   await page.locator('#quote-reset').click();
@@ -87,7 +93,7 @@ async (page) => {
     if(!page.url().includes('logo='+next)||await page.locator('body').getAttribute('data-identity')!==next)failures.push('identity selection');
     if(!await page.locator('.brand-link img').getAttribute('src').then(s=>s.includes(next)))failures.push('identity logo');
     await page.locator('#identity-select').selectOption(logo);await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(4600);
-    if(!await page.evaluate(()=>document.getAnimations().some(a=>a.animationName==='mouth-upper'&&a.playState==='running')))failures.push('automatic mouth motion stopped');
+    if(!await page.evaluate(()=>document.getAnimations().some(a=>a.animationName==='film-breathe'&&a.playState==='running')))failures.push('automatic photographic motion stopped');
     await page.screenshot({path:output+'landing-'+logo+'-full.png',fullPage:true});
     await page.setViewportSize({width:390,height:844});await page.screenshot({path:output+'landing-'+logo+'-mobile.png',fullPage:true});
   }
