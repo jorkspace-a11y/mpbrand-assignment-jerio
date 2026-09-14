@@ -13,10 +13,10 @@ document.querySelector('#project-close').addEventListener('click',()=>dialog.clo
 const tourSteps=[...document.querySelectorAll('.tour-step')];
 const tourPreview=document.querySelector('#tour-preview');
 const tourLabels=['Captured site / Coastal overview','Captured site / Palms, labelled September 2026 in the tour','Proposed villa / Rendered interior'];
-let currentTour=0;
+let currentTour=0,manualTourY=null;
 function showTour(index){if(index===currentTour)return;currentTour=index;const source=tourSteps[index].querySelector('img');tourPreview.src=source.getAttribute('src');tourPreview.alt=source.alt;document.querySelector('#tour-caption').textContent=tourLabels[index];document.querySelectorAll('[data-tour-view]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.tourView)===index)));if(!motionPreference.matches){tourPreview.getAnimations().forEach(a=>a.cancel());tourPreview.animate([{clipPath:'inset(0 0 0 100%)'},{clipPath:'inset(0)'}],{duration:450,easing:'cubic-bezier(.16,1,.3,1)'});}}
-document.querySelectorAll('[data-tour-view]').forEach(button=>button.addEventListener('click',()=>showTour(Number(button.dataset.tourView))));
+document.querySelectorAll('[data-tour-view]').forEach(button=>button.addEventListener('click',()=>{manualTourY=scrollY;showTour(Number(button.dataset.tourView));}));
 // ponytail: only three step bounds, and only while the tour is in view.
-function followTour(){if(innerWidth<1024)return;const section=document.querySelector('#experience').getBoundingClientRect();if(section.bottom<0||section.top>innerHeight)return;let index=0;tourSteps.forEach((step,i)=>{if(step.getBoundingClientRect().top<=innerHeight*.45)index=i;});showTour(index);}
+function followTour(){if(innerWidth<1024)return;if(manualTourY!==null){if(Math.abs(scrollY-manualTourY)<8)return;manualTourY=null;}const section=document.querySelector('#experience').getBoundingClientRect();if(section.bottom<0||section.top>innerHeight)return;let index=0;tourSteps.forEach((step,i)=>{if(step.getBoundingClientRect().top<=innerHeight*.45)index=i;});showTour(index);}
 addEventListener('scroll',followTour,{passive:true});
 addEventListener('resize',followTour);

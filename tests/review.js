@@ -71,6 +71,7 @@ async (page) => {
     }
     await page.setViewportSize({width:1440,height:1000});
     await page.locator('[data-tour-view="2"]').click();
+    await page.evaluate(()=>dispatchEvent(new Event('scroll')));await page.waitForTimeout(300);
     if(!await page.locator('#tour-preview').getAttribute('src').then(s=>s.includes('interior')))failures.push('tour manual selection');
     await page.locator('.tour-step[data-tour="1"]').scrollIntoViewIfNeeded();
     await page.evaluate(()=>{const r=document.querySelector('.tour-step[data-tour="1"]').getBoundingClientRect();scrollBy(0,r.top-innerHeight*.3)});
