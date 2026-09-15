@@ -26,4 +26,6 @@ Separate the reviewer journey from the prospective-client journey. Give each pag
 
 ## Accessibility & Inclusion
 
+Motion is required across all assignment pages, not only the homepage. Give each task a visual interaction related to its content. Keep task navigation, reading, downloads and quotation editing usable throughout. Preserve the existing print deliverables as static documents.
+
 Preserve readable contrast, keyboard navigation, native controls, clear focus and narrow-screen layouts. Motion starts automatically without an enable button; reduced-motion preferences receive a quiet alternative. Large original contour-lips artwork, moving display type and photographic cuts lead the web openings. Supporting photographic sequences remain in the work. All motion starts automatically with a footer pause control. No emoji-capable navigation symbols or default decorative stickers. Keep text steady and avoid flashing. Never hide essential content behind animation.

@@ -51,7 +51,13 @@ At tablet and phone sizes, Anjuna becomes three inline image/text steps rather t
 
 See BRIEF-COVERAGE.md for the requirement map and evidence boundaries.
 
-## Open questions
+## Motion on every assignment page
+
+Every assignment route has automatic graphic motion and working interactions. The company and assignment openings retain the contour-lips composition. Other task pages use content-specific studies: audit apertures, direction ribbons, supplied-mark selection, colour relationships, a fifteen-frame sequence, exact format ratios, conversation rhythm, review shutters, six content territories, annotation crops, supplied tour scenes and a commercial reading-order composition. The library, logo applications and quotation creator have companion studies. No emoji or stock decorative icon layer is introduced.
+
+Each study has native buttons with pressed states, keyboard focus and a persistent explanatory caption. It runs without activation and pauses through the shared footer, offscreen, in a hidden tab or under reduced-motion preferences. The interaction studies are screen-only; the existing static task PDFs, source annotations, 15 campaign exports, 36 applications and quotation values stay intact. Never require someone to interact with the artwork to read or navigate a task.
+
+## Unresolved source questions
 Founder portrait and final identity approval remain user decisions. Source examples are sampled-frame reviews unless full playback is explicitly evidenced. Before issuing a real quotation, confirm the two source dates, teaser duration and legal company spelling.
 
 ## Submission QA

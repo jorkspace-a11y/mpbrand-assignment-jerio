@@ -15,6 +15,6 @@ async(page)=>{
   await page.emulateMedia({reducedMotion:'reduce'});if(await page.evaluate(()=>document.getAnimations().some(a=>a.playState==='running')))failures.push(route+': reduced motion');
   await page.emulateMedia({reducedMotion:'no-preference'});if(!await moving(selector))failures.push(route+': preference recovery');
  }
- await page.goto(base+'quotation.html');if(await page.locator('.motion-pause').count())failures.push('quotation: inert pause');
+ await page.goto(base+'quotation.html');if(await page.locator('.task-motion').count()!==1||await page.locator('.motion-pause').count()!==1)failures.push('quotation: motion study or pause missing');
  await page.emulateMedia({reducedMotion:'no-preference'});return {failures,errors};
 }
