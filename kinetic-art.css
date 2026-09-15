@@ -1,0 +1,47 @@
+/* Moving print composition: large type, a deforming contour mouth, photographic cuts. */
+.has-motion-art{isolation:isolate;background:#111!important;overflow:hidden}
+.landing-motion-preview{position:relative;height:420px;margin-top:32px}
+.has-motion-art>img{opacity:0!important;animation:none!important}
+.submission .hero-art.has-motion-art::after{content:none}
+.motion-poster{position:absolute;inset:0;overflow:hidden;isolation:isolate;background:#111;color:#ff4b26;container-type:inline-size}
+.poster-type{position:absolute;z-index:1;color:#f6f6f4;font:400 25cqw/.82 Anton,Display,sans-serif;letter-spacing:-.025em;white-space:nowrap;user-select:none}
+.poster-type-top{top:-3%;left:0;animation:type-travel 8s cubic-bezier(.45,0,.55,1) infinite alternate}
+.poster-type-bottom{bottom:-6%;right:-1%;animation:type-travel 8s cubic-bezier(.45,0,.55,1) infinite alternate-reverse}
+@keyframes type-travel{from{transform:translateX(-4%)}to{transform:translateX(8%)}}
+.contour-stage{position:absolute;inset:0;width:100%;height:100%;z-index:3;overflow:visible;filter:drop-shadow(0 2px 0 #111)}
+.contour-turn{transform-origin:50% 50%;animation:contour-turn 12s cubic-bezier(.45,0,.55,1) infinite alternate}
+@keyframes contour-turn{from{transform:rotate(-17deg) scale(.92)}to{transform:rotate(14deg) scale(1.09)}}
+.poster-color-cut{position:absolute;z-index:0;left:64%;top:-30%;width:45%;height:160%;background:#064fff;transform:rotate(22deg);animation:color-cut 12s cubic-bezier(.45,0,.55,1) infinite alternate}
+@keyframes color-cut{from{transform:translateX(0) rotate(22deg)}to{transform:translateX(48%) rotate(-8deg)}}
+.submission .has-motion-art .motion-poster .poster-film-cut{position:absolute;inset:auto;z-index:2;left:4%;top:34%;width:24%;height:34%;max-width:none;object-fit:cover;filter:grayscale(1);scale:1;translate:none;animation:film-cut 8s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes film-cut{0%,100%{transform:translate(0,20%) rotate(-9deg);clip-path:inset(0 100% 0 0)}15%,43%{transform:translate(20%,-8%) rotate(5deg);clip-path:inset(0)}60%,86%{transform:translate(130%,15%) rotate(-5deg);clip-path:inset(0)}95%{transform:translate(180%,15%) rotate(-5deg);clip-path:inset(0 0 0 100%)}}
+.poster-credit{position:absolute;z-index:4;bottom:5%;left:4%;padding:6px 9px;background:#111;color:#fff;font:400 13px/1.2 Jost,Body,sans-serif}
+.art-paused *{animation-play-state:paused!important}
+body.submission[data-identity] .landing-hero{padding-top:24px}
+body.submission[data-identity] .hero-film{order:-1;height:470px;width:100%;align-self:stretch;margin-bottom:28px}
+body.submission[data-identity] .hero-heading{order:1;padding-top:10px;padding-bottom:0}
+body.submission[data-identity] .hero-category{margin-bottom:5px}
+body.submission[data-identity] .hero-window{inset:0 0 28px;height:calc(100% - 28px)}
+body.submission[data-identity=signal] .motion-poster{background:#df301c;color:#111}
+body.submission[data-identity=signal] .poster-color-cut{background:#ffd928}
+body.submission[data-identity=studio] .landing-hero{display:flex;gap:0}
+body.submission[data-identity=studio] .hero-heading{display:grid;grid-template-columns:1.5fr 1fr}
+body.submission[data-identity=studio] .hero-film{height:470px!important}
+body.submission[data-identity=studio] .motion-poster{background:#f6f6f4;color:#111}
+body.submission[data-identity=studio] .poster-type{color:#111}
+body.submission[data-identity=studio] .poster-color-cut{background:#ff4b26}
+body.submission[data-identity] .contact-section{position:relative;isolation:isolate;overflow:hidden}
+body.submission[data-identity] .contact-section::after{content:'';position:absolute;z-index:-1;right:-12%;top:-35%;width:50%;height:180%;border-radius:50%;background:repeating-radial-gradient(ellipse,#111 0 2px,transparent 3px 15px);transform:rotate(25deg);animation:signoff-lines 9s ease-in-out infinite alternate;opacity:.4;pointer-events:none}
+@keyframes signoff-lines{from{transform:rotate(25deg) scaleX(.65)}to{transform:rotate(-15deg) scaleX(1.2)}}
+@media(max-width:767px){
+ .landing-motion-preview{height:330px}
+ body.submission[data-identity] .landing-hero{padding:15px 20px 30px}
+ body.submission[data-identity] .hero-film,body.submission[data-identity=studio] .hero-film{height:330px!important;width:100%;margin-bottom:20px}
+ body.submission[data-identity] .hero-heading,body.submission[data-identity=studio] .hero-heading{display:block;padding:0}
+ .poster-type{font-size:36cqw}.poster-type-top{top:5%}.poster-type-bottom{bottom:6%}
+ .contour-stage{width:165%;max-width:none;left:-32.5%}.poster-credit{font-size:11px;bottom:3%}
+ .submission .has-motion-art .motion-poster .poster-film-cut{width:38%;height:27%;top:30%}.poster-color-cut{left:60%;width:65%}
+ body.submission[data-identity] .contact-section::after{width:90%;right:-45%;opacity:.3}
+}
+@media(prefers-reduced-motion:reduce){.motion-poster *{animation:none!important}.poster-film-cut{clip-path:inset(0)!important}.contour-turn{transform:rotate(-8deg)}body.submission[data-identity] .contact-section::after{animation:none!important}}
+@media print{.landing-motion-preview{height:260px;margin-top:20px;break-inside:avoid}.motion-poster *{animation:none!important}.poster-film-cut{clip-path:inset(0)!important}.contour-turn{transform:rotate(-8deg)}body.submission[data-identity] .contact-section::after{animation:none!important}}

@@ -1,7 +1,7 @@
 // ponytail: native animation and observers keep the graphic layer independent of content.
 (()=>{
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
- const pause=document.createElement('button');pause.type='button';pause.className='motion-pause';pause.textContent='Pause motion';pause.setAttribute('aria-pressed','false');if(document.querySelector('.hero-window img,.hero-art>img,.social-art.portrait,.art.portrait,.social-art.optical'))document.querySelector('footer')?.append(pause);
+ const pause=document.createElement('button');pause.type='button';pause.className='motion-pause';pause.textContent='Pause motion';pause.setAttribute('aria-pressed','false');if(document.querySelector('.hero-window img,.hero-art>img,.landing-motion-preview,.social-art.portrait,.art.portrait,.social-art.optical'))document.querySelector('footer')?.append(pause);
  let pausedEntrances=[];
  pause.addEventListener('click',()=>{const paused=document.body.classList.toggle('motion-paused');pause.textContent=paused?'Resume motion':'Pause motion';pause.setAttribute('aria-pressed',String(paused));if(paused){pausedEntrances=document.getAnimations().filter(a=>!('animationName' in a)&&a.playState==='running');pausedEntrances.forEach(a=>a.pause());}else{pausedEntrances.filter(a=>a.playState==='paused').forEach(a=>a.play());pausedEntrances=[];}});
  function motionPreference(){pause.hidden=reduced.matches;if(reduced.matches)document.getAnimations().filter(a=>!('animationName' in a)).forEach(a=>a.cancel());}motionPreference();

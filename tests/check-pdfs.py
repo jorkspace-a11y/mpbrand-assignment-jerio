@@ -18,15 +18,19 @@ for path in sorted(root.glob('*.pdf')):
         values=['15,000,000','8,000,000'] if '-scope-' in path.name else ['8,000,000','10,000,000']
         assert all(value in texts[0] for value in values),(path.name,'price mismatch')
     writer=PdfWriter(clone_from=reader)
+    changed=False
     for page in writer.pages:
         for ref in page.get('/Annots',[]):
             action=ref.get_object().get('/A')
             if action and '/URI' in action:
                 uri=str(action['/URI'])
                 assert not any(s in uri for s in ['ug.link','filemgr','file://','C:/']), (path.name,'private link')
-                uri=re.sub(r'http://127\.0\.0\.1:\d+/mpbrand-assignment-jerio/',live,uri)
+                public_uri=re.sub(r'http://127\.0\.0\.1:\d+/mpbrand-assignment-jerio/',live,uri)
+                changed=changed or public_uri!=uri
+                uri=public_uri
                 action[NameObject('/URI')]=TextStringObject(uri)
-    temp=path.with_suffix('.pdf.tmp')
-    writer.write(temp);temp.replace(path)
+    if changed:
+        temp=path.with_suffix('.pdf.tmp')
+        writer.write(temp);temp.replace(path)
     count+=len(reader.pages)
 print(f'{len(list(root.glob("*.pdf")))} PDFs / {count} pages: no visible watermarks, source prices, page counts and public links checked')

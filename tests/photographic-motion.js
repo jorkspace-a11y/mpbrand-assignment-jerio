@@ -4,7 +4,7 @@ async(page)=>{
  const cdp=await page.context().newCDPSession(page);await cdp.send('Emulation.setFocusEmulationEnabled',{enabled:true});await cdp.send('Network.enable');await cdp.send('Network.setCacheDisabled',{cacheDisabled:true});await page.bringToFront();
  await page.emulateMedia({media:'screen',reducedMotion:'no-preference'});
  const moving=async selector=>{const sample=()=>page.locator(selector).first().evaluate(e=>{const s=getComputedStyle(e);return [s.scale,s.translate,s.clipPath,s.filter].join('|');});const a=await sample();await page.waitForTimeout(1000);return a!==await sample();};
- for(const route of ['','phase.html?task=grid','phase.html?task=applications','logo-routes.html','homepage.html?logo=editorial','homepage.html?logo=signal','homepage.html?logo=studio']){
+ for(const route of ['phase.html?task=grid','phase.html?task=applications','logo-routes.html']){
   await page.setViewportSize({width:390,height:844});await page.goto(base+route);await page.waitForTimeout(6100);
   const selector=route===''?'.hero-art>img':route.startsWith('homepage')?'.hero-window img':route.includes('grid')?'.layout-negative:visible .photo':'.portrait:visible .photo';
   if(!await moving(selector))failures.push(route+': idle motion stopped');

@@ -93,7 +93,8 @@ async (page) => {
     if(!page.url().includes('logo='+next)||await page.locator('body').getAttribute('data-identity')!==next)failures.push('identity selection');
     if(!await page.locator('.brand-link img').getAttribute('src').then(s=>s.includes(next)))failures.push('identity logo');
     await page.locator('#identity-select').selectOption(logo);await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(4600);
-    if(!await page.evaluate(()=>document.getAnimations().some(a=>a.animationName==='film-breathe'&&a.playState==='running')))failures.push('automatic photographic motion stopped');
+    const artTime=await page.locator('.contour-stage').evaluate(s=>s.getCurrentTime());await page.waitForTimeout(500);
+    if(await page.locator('.contour-stage').evaluate(s=>s.getCurrentTime())<=artTime)failures.push('automatic graphic motion stopped');
     await page.screenshot({path:output+'landing-'+logo+'-full.png',fullPage:true});
     await page.setViewportSize({width:390,height:844});await page.screenshot({path:output+'landing-'+logo+'-mobile.png',fullPage:true});
   }

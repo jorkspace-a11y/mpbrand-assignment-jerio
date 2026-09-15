@@ -19,13 +19,13 @@ Final presentation / Design library. Hero links to 13 named tasks: audit, direct
 One idea per frame; varied scale and composition across a sequence. Brand rules live in the system task; examples live in applications; source critique lives in reviews. No visible author watermark on pages, creative assets or current PDFs. Explanation is open editorial text, not a side-stripe callout.
 
 ## Visual language
-Ink #121212, near-white #f6f6f4 and vermilion #df301c lead the submission. Earlier blue, orange and yellow remain secondary brand options. The latest image set drives the compositions: documentary image scale, asymmetric information, intentional empty space, small factual labels and contrasting type sizes. Bold Jost leads the interface; Anton is reserved for selected campaign headlines. No emoji-capable arrows, eyes, mouths, star stickers or generic callout cards. Photography must come from approved project assets, never borrowed reference subjects. Do not imply a pictured performer is Christobal. Inspiration names stay outside the submission; original work remains visible where source critique is required.
+Ink #121212, near-white #f6f6f4 and vermilion #df301c lead the submission. Earlier blue, orange and yellow remain secondary brand options. The latest image set drives the compositions: documentary image scale, asymmetric information, intentional empty space, small factual labels and contrasting type sizes. Bold Jost leads the interface; Anton is reserved for selected campaign headlines. No emoji-capable arrows, stock face icons, star stickers or generic callout cards. Original abstract contour lips are part of the requested motion artwork, not navigation icons. Photography must come from approved project assets, never borrowed reference subjects. Do not imply a pictured performer is Christobal. Inspiration names stay outside the submission; original work remains visible where source critique is required.
 
 ## Components
 Reuse native buttons, details, dialogs, print selection and asset files. New phase renderer and quotation form use plain HTML/CSS/JS. No framework or animation dependency. Logo 02 changes from underlined heavy text to a rounded upright wordmark with a contained accent, with rounded geometry and a contained fragment. Editorial remains the primary recommendation, Studio remains the compact alternative.
 
 ## Accessibility
-Visible focus, semantic heading order, text labels, 44px controls. No essential text over busy imagery. Photographic pan and masked-focus loops start automatically and continue without scrolling, with a discreet footer pause control. Honor reduced motion. Print is static.
+Visible focus, semantic heading order, text labels, 44px controls. No essential text over busy imagery. A dominant contour-lips composition, moving display type and photographic cuts start automatically on the assignment and company openings. Supporting photographic loops remain in the applications. A discreet footer pause control stops both SVG and CSS motion. Honor reduced motion. Print is static.
 
 ## Responsive behavior
 320, 390, 768, 1024, 1440. Task layouts collapse to one column. Quote artboard remains proportionate in its scroll container on narrow screens; print uses A4. No page-level horizontal overflow or accidental text overlap.
@@ -41,7 +41,7 @@ GitHub Pages with project-relative paths. Keep internal shared archive URLs and 
 
 ## Graphic revision
 
-Keep the existing seven-section company structure. Editorial uses ink, an open introduction and a wide monochrome photograph. Signal uses vermilion, condensed upright type and an offset photograph. Studio uses a white field, a tall split-layout photograph and bold black type. The selected logo, typography and color treatment carry through the opening, work, tour and contact surfaces.
+Keep the existing seven-section company structure. Editorial uses ink, orange contour lips and a cobalt cut. Signal uses vermilion, black contours, yellow cuts and condensed upright type. Studio uses a white field, black contours, a vermilion cut and bold black type. Each has a full-width motion composition before the separate business message. The selected logo, typography and color treatment carry through the opening, work, tour and contact surfaces.
 
 The assignment homepage has four chapters and a collapsible mapping to the 21-page source brief. Titles answer requirements; descriptions identify the evidence rather than repeat the rationale. Internal responses use native section selection.
 
@@ -56,4 +56,4 @@ Founder portrait and final identity approval remain user decisions. Source examp
 
 ## Submission QA
 
-Review the 15 campaign frames and 36 application exports separately from functional checks. Remove emoji-capable Unicode arrows from navigation; use Previous / Next text. Chapter and section indexes remain in document flow, not over the reading area. Native CSS handles photographic loops; no Remotion runtime or new dependency is needed for browser motion. All 20 PDF downloads must be regenerated from this same composition layer and visually checked before publication.
+Review the 15 campaign frames and 36 application exports separately from functional checks. Remove emoji-capable Unicode arrows from navigation; use Previous / Next text. Chapter and section indexes remain in document flow, not over the reading area. Native SVG morphing and CSS handle the artwork; no Remotion runtime or new dependency is needed for browser motion. SVG pauses offscreen, when the document is hidden, for reduced motion, in print and through the footer control. All 20 PDF downloads must be regenerated from this same composition layer and visually checked before publication.
